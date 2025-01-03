@@ -1,0 +1,93 @@
+module "alb" {
+    source = "terraform-aws-modules/alb/aws"
+
+    name    = var.alb_name
+    vpc_id  = var.vpc_id
+    subnets = var.lb_subnets
+    internal = var.is_Internal
+    load_balancer_type = var.load_balancer_type
+
+    # Security Group
+    security_group_ingress_rules = {
+      all_http = {
+        from_port   = 80
+        to_port     = 80
+        ip_protocol = "tcp"
+        description = "HTTP web traffic"
+        cidr_ipv4   = "0.0.0.0/0"
+      } 
+      all_https = {
+        from_port   = 443
+        to_port     = 443
+        ip_protocol = "tcp"
+        description = "HTTPS web traffic"
+        cidr_ipv4   = "0.0.0.0/0"
+      }
+    }
+
+    security_group_egress_rules = {
+        all = {
+            ip_protocol = "-1"
+            cidr_ipv4   = "10.0.0.0/16"
+        }
+    }
+
+################### commented in case of need to add redirect ##################
+################### commented in case of need to add redirect ##################
+################### commented in case of need to add redirect ##################
+
+  listeners = {
+    http-redirect = {
+      port     = 80
+      protocol = "HTTP"
+      redirect = {
+        port        = "443"
+        protocol    = "HTTPS"
+        message_body = "Moved Permanently"
+        status_code = "HTTP_301"
+      }
+    }
+    https = {
+      port            = 443
+      protocol        = "HTTPS"
+      certificate_arn = var.certificate_arn
+      fixed_response = {
+        status_code  = "503"
+        content_type = "text/plain"
+        message_body = "Service Unavailable"
+      }
+      rules = {
+        for tg_name in var.target_groups : tg_name => {
+          priority = index(var.target_groups, tg_name) + 1
+          actions = [{
+            type             = "forward"
+            target_group_key = tg_name
+          }]
+          conditions = [{
+            path_pattern = {
+              values = ["/api/${replace(tg_name, "api-", "")}/*"]
+            }
+          }]
+        } if tg_name != "authorizer"
+      }
+    }
+  }
+###################
+###################
+###################
+
+  target_groups = {
+    for tg_name in var.target_groups : tg_name => {
+      name        = tg_name
+      protocol    = "HTTP"
+      port        = 80
+      target_type = "ip"
+      target_id   = var.target_id
+    }
+  }
+}
+
+output "dns_name" {
+ value = module.alb.dns_name
+}
+
