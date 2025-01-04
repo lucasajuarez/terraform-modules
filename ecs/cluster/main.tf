@@ -25,4 +25,9 @@ module "ecs_cluster" {
     Environment     = "stage"
     Project         = "litebox-internal"
   }
+
+output "cluster_arn" {
+    value       = module.ecs_cluster.arn
+}
+  
 }
