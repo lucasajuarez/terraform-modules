@@ -50,7 +50,7 @@ module "alb" {
     https = {
       port            = 443
       protocol        = "HTTPS"
-      certificate_arn = var.certificate_arn
+      #certificate_arn = var.certificate_arn
       fixed_response = {
         status_code  = "503"
         content_type = "text/plain"
@@ -68,7 +68,7 @@ module "alb" {
               values = ["/api/${replace(tg_name, "api-", "")}/*"]
             }
           }]
-        } if tg_name != "authorizer"
+        }
       }
     }
   }
