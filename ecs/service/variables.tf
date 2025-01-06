@@ -50,3 +50,7 @@ variable "vpc_id" {
 variable "target_group_arn" {
   type = string
 }
+
+variable "container_name" {
+  type = string
+}
