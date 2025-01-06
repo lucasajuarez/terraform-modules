@@ -1,4 +1,4 @@
-module "ecs-service" {
+module "ecs_service" {
   source = "terraform-aws-modules/ecs/aws//modules/service"
 
   name        = var.name
