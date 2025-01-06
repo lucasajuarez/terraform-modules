@@ -1,33 +1,28 @@
 module "secrets_manager" {
   source = "terraform-aws-modules/secrets-manager/aws"
 
-  # Secret
-  name_prefix             = "example"
-  description             = "Example Secrets Manager secret"
-  recovery_window_in_days = 30
+  # Secret metadata
+  name_prefix             = var.name_prefix
+  description             = var.description
+  recovery_window_in_days = var.recovery_window_in_days
 
-  # Policy
+  # Secret value
+  secret_string = jsonencode(var.secret_values)
+
+  # Policy for accessing the secret
   create_policy       = true
   block_public_policy = true
   policy_statements = {
-    read = {
-      sid = "AllowAccountRead"
+    ecs_service_access = {
+      sid = "AllowECSServiceAccess"
       principals = [{
         type        = "AWS"
-        identifiers = ["arn:aws:iam::1234567890:root"]
+        identifiers = [var.ecs_service_role_arn]
       }]
       actions   = ["secretsmanager:GetSecretValue"]
-      resources = ["*"]
+      resources = ["${module.secrets_manager.secrets[0].arn}"]
     }
   }
 
-  # Version
-  create_random_password           = true
-  random_password_length           = 64
-  random_password_override_special = "!@#$%^&*()_+"
-
-  tags = {
-    Environment = "Development"
-    Project     = "Example"
-  }
+  tags = var.tags
 }
