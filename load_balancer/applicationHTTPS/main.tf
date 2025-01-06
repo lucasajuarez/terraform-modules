@@ -65,7 +65,7 @@ module "alb" {
           }]
           conditions = [{
             path_pattern = {
-              values = ["/api/${replace(tg_name, "api-", "")}/*"]
+              values = ["/${replace(tg_name, "api-", "")}/*"]
             }
           }]
         }
