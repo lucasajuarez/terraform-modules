@@ -26,12 +26,4 @@ module "ecs_cluster" {
     Project         = "litebox-internal"
   }
 
-  output "cluster_arn" {
-    value = module.ecs_cluster.arn
-  }
-
-  output "cluster_name" {
-    value = module.ecs_cluster.name
-  }  
-
 }
