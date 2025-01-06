@@ -65,7 +65,7 @@ module "ecs-service" {
     service = {
       target_group_arn = var.target_group_arn
       container_name   = var.container_name
-      container_port   = 80
+      container_port   = var.apiPort
     }
   }  
 }
