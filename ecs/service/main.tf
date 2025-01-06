@@ -58,3 +58,4 @@ container_definitions = {
           discovery_name = "${var.name}-${var.apiPort}-tcp"
         }
       }
+}
