@@ -20,7 +20,7 @@ module "secrets_manager" {
         identifiers = [var.ecs_service_role_arn]
       }]
       actions   = ["secretsmanager:GetSecretValue"]
-      resources = ["${module.secrets_manager.secrets[0].arn}"]
+      resources = ["*"]
     }
   }
 
