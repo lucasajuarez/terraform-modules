@@ -14,22 +14,22 @@ module "ecs-service" {
   task_exec_iam_role_arn = var.task_role
   tasks_iam_role_arn = var.task_role
 
-  container_definitions = {
-    (var.container_name) = {
-      cpu       = 512
-      memory    = 1024
-      essential = true
-      image     = tostring(var.apiImage)
-      port_mappings = [
-        {
-          name          = "apiport"
-          containerPort = var.apiPort
-          protocol      = "tcp"
-        }
-      ]
-      memory_reservation = 50
-    }
-  }
+  # container_definitions = {
+  #   (var.container_name) = {
+  #     cpu       = 512
+  #     memory    = 1024
+  #     essential = true
+  #     image     = tostring(var.apiImage)
+  #     port_mappings = [
+  #       {
+  #         name          = "apiport"
+  #         containerPort = var.apiPort
+  #         protocol      = "tcp"
+  #       }
+  #     ]
+  #     memory_reservation = 50
+  #   }
+  # }
 
   subnet_ids = var.subnet_ids
 
@@ -60,5 +60,4 @@ module "ecs-service" {
       discovery_name = "${var.name}-${var.apiPort}-tcp"
     }
   }
-}
 }
