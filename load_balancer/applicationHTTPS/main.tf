@@ -37,19 +37,19 @@ module "alb" {
 ################### commented in case of need to add redirect ##################
 
   listeners = {
-    http-redirect = {
-      port     = 80
-      protocol = "HTTP"
-      redirect = {
-        port        = "443"
-        protocol    = "HTTPS"
-        message_body = "Moved Permanently"
-        status_code = "HTTP_301"
-      }
-    }
-    https = {
-      port            = 443
-      protocol        = "HTTPS"
+    # http-redirect = {
+    #   port     = 80
+    #   protocol = "HTTP"
+    #   redirect = {
+    #     port        = "443"
+    #     protocol    = "HTTPS"
+    #     message_body = "Moved Permanently"
+    #     status_code = "HTTP_301"
+    #   }
+    # }
+    http = {
+      port            = 80 #TODO CAMBIAR A HTTPS CUANDO PUEDA TENER CERTIFICADO
+      protocol        = "HTTP"
       #certificate_arn = var.certificate_arn
       fixed_response = {
         status_code  = "503"
