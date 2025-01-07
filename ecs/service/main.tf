@@ -28,6 +28,11 @@ module "ecs-service" {
         }
       ]
       memory_reservation = 50
+      secrets = [for name, arn in var.secrets : {
+        name      = name
+        valueFrom = arn
+      }]
+
     }
   }
 

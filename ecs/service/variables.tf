@@ -50,3 +50,8 @@ variable "vpc_id" {
 variable "target_group_arn" {
   type = string
 }
+
+variable "secrets" {
+  type = map(string)
+  default = {}
+}
