@@ -15,15 +15,10 @@ module "elasticache_serverless_cache" {
 
   daily_snapshot_time  = "22:00"
   description          = "Redis Serverless"
-# kms_key_id           = aws_kms_key.this.arn
   major_engine_version = "7"
-
-  security_group_ids = var.security_group_ids
 
   snapshot_retention_limit = 7
   subnet_ids               = var.subnet_ids
-
-#  user_group_id = module.cache_user_group.group_id
 
   tags = {
     Environment = "stage"
