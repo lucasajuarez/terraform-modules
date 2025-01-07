@@ -3,5 +3,4 @@ output "dns_name" {
 }
 
 output "target_group_arn" {
-    value = { for key, tg in aws_lb_target_group.this : key => tg.arn }
-}
+    value = module.alb.target_groups.tg_name.arn
