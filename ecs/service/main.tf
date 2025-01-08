@@ -33,7 +33,12 @@ module "ecs-service" {
           name      = name
           valueFrom = arn
         }]
-
+      depends_on = [
+        {
+          containerName = "redis"
+          condition     = "HEALTHY" # Options: START, COMPLETE, HEALTHY, SUCCESS
+        }
+      ]
       }
     },
     {
