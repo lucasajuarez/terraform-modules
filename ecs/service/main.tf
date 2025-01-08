@@ -37,7 +37,7 @@ module "ecs-service" {
       }
     },
     {
-      nginx = {
+      redis = {
         cpu       = 1000
         memory    = 1000
         essential = true
