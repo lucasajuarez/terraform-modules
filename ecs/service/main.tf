@@ -4,7 +4,7 @@ module "ecs-service" {
   name        = var.name
   cluster_arn = var.cluster_arn
   
-  cpu    = 1024
+  cpu    = 2048
   memory = 4096
 
   create_task_exec_iam_role = var.create_task_exec_iam_role
