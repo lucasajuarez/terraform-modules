@@ -55,7 +55,3 @@ variable "secrets" {
   type = map(string)
   default = {}
 }
-
-variable "redisImage" {
-  type = string
-}

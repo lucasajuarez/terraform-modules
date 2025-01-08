@@ -14,8 +14,7 @@ module "ecs-service" {
   task_exec_iam_role_arn = var.task_role
   tasks_iam_role_arn = var.task_role
 
-  container_definitions = merge (
-    {
+  container_definitions = {
       (var.container_name) = {
         cpu       = 512
         memory    = 1024
@@ -33,32 +32,8 @@ module "ecs-service" {
           name      = name
           valueFrom = arn
         }]
-      depends_on = [
-        {
-          containerName = "redis"
-          condition     = "HEALTHY" # Options: START, COMPLETE, HEALTHY, SUCCESS
-        }
-      ]
-      }
-    },
-    {
-      redis = {
-        cpu       = 1000
-        memory    = 1000
-        essential = true
-        image     = tostring(var.redisImage)
-        port_mappings = [
-          {
-            name          = "redis"
-            containerPort = 6379
-            protocol      = "tcp"
-          }
-        ]
-        readonly_root_filesystem = false
-        memory_reservation       = 100
       }
     }
-  )
 
   subnet_ids = var.subnet_ids
 
