@@ -27,7 +27,7 @@ module "elasticache" {
   }
 
   # Subnet Group
-  subnet_ids = var.subnet_ids
+  subnet_ids = var.private_subnets
 
   # Parameter Group
   create_parameter_group = true

@@ -2,7 +2,7 @@ variable vpc_id {
   type = string
 }
 
-variable "subnet_ids" {
+variable "private_subnets" {
   type = list(string)
 }
 
@@ -15,9 +15,5 @@ variable "project_name" {
 }
 
 variable "cluster_name" {
-  type = string
-}
-
-variable "subnet_ids" {
   type = string
 }
