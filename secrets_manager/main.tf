@@ -12,6 +12,7 @@ module "secrets_manager" {
   # Policy for accessing the secret
   create_policy       = true
   block_public_policy = true
+  force_overwrite_replica_secret = true
   policy_statements = {
     ecs_service_access = {
       sid = "AllowECSServiceAccess"
