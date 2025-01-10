@@ -64,7 +64,7 @@ module "alb" {
             target_group_key = tg_name
           }]
           conditions = [{
-            host_pattern = {
+            host_header = {
               values = ["${tg_name}.${var.domain}"]
             }              
           }]
