@@ -63,12 +63,11 @@ module "alb" {
             type             = "forward"
             target_group_key = tg_name
           }]
-          conditions = [{
-            {
-              field  = "host-header"
-              values = ["${tg_name}.${var.domain}"]
-            }
-          }]          
+          conditions [{
+              host_pattern = {
+                values = ["${tg_name}.${var.domain}"]
+              }              
+            }]
         }
       }
     }
