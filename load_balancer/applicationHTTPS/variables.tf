@@ -35,3 +35,7 @@ variable "load_balancer_type" {
   type = string
   default = "application"
 }
+
+variable "domain" {
+  type = string
+}

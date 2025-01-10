@@ -63,11 +63,12 @@ module "alb" {
             type             = "forward"
             target_group_key = tg_name
           }]
-          conditions = [{
-            path_pattern = {
-              values = ["/${replace(tg_name, "api-", "")}/*"]
+          conditions = [
+            {
+              field  = "host-header"
+              values = ["${tg_name}.${var.domain}"]
             }
-          }]
+          ]          
         }
       }
     }
