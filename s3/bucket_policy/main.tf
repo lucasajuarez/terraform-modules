@@ -15,7 +15,7 @@ resource "aws_s3_bucket_policy" "policy" {
             Principal = {
             "AWS" = "*"
             },
-            Resource  = "${var.s3_bucket_arn}/*"
+            Resource  = "arn:aws:s3:::${var.s3_bucket_name}/*"
         }
         ]
     })
