@@ -1,26 +1,26 @@
 resource "aws_s3_bucket_policy" "policy" {
     bucket = var.s3_bucket_arn
     policy = jsonencode({
-        Id      = "PublicRead"
-        Statement = [
-        {   
-            Sid       = "s3Access",
-            Effect    = "Allow"
-            Action    = [
-              "s3:GetObject",
-              "s3:ListBucket",
-              "s3:PutObject",
-              "s3:PutObjectAcl"
-            ]
-            Principal = {
-            "AWS" = "*"
-            },
-            Resource  = "arn:aws:s3:::${var.s3_bucket_name}/*"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicRead",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:PutObject",
+                "s3:PutObjectAcl"
+            ],
+            "Resource": "arn:aws:s3:::${var.s3_bucket_name}/*",
+            "Condition": {
+                "StringEquals": {
+                    "s3:x-amz-acl": "public-read"
+                }
+            }
         }
-        ]
+    ]
     })
 }
-
 
 
 # output "s3_bucket_name" {
