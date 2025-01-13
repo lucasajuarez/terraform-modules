@@ -9,7 +9,9 @@ resource "aws_s3_bucket_policy" "policy" {
             "Action": [
             "s3:*"
             ],
-            "Principal": "${var.principal}",            
+            "Principal": {
+                "AWS": "${var.principal}"
+            },                       
             "Resource": "${var.s3_bucket_arn}/*"
         }
         ]
