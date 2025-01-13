@@ -88,8 +88,8 @@ module "ecs-service" {
   load_balancer = {
     service = {
       target_group_arn = var.target_group_arn
-      container_name   = var.container_name
-      container_port   = var.apiPort
+      container_name   = var.nginxProxy ? "nginx" : var.container_name
+      container_port   = var.nginxProxy ? 80 : var.apiPort
     }
   }  
 }
