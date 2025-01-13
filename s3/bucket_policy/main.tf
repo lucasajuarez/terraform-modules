@@ -1,5 +1,5 @@
 resource "aws_s3_bucket_policy" "policy" {
-    bucket = var.s3_bucket_arn
+    bucket = var.s3_bucket_name
     policy = jsonencode({
         "Version": "2012-10-17",
         "Statement": [
@@ -11,7 +11,7 @@ resource "aws_s3_bucket_policy" "policy" {
             "s3:PutObjectAcl"
             ],
             "Principal": "*",            
-            "Resource": "${var.s3_bucket_name}/*"
+            "Resource": "${var.s3_bucket_arn}/*"
         }
         ]
     })
