@@ -6,11 +6,11 @@ resource "aws_s3_bucket_policy" "policy" {
         {
             "Sid": "PublicRead",
             "Effect": "Allow",
-            "Principal": "*",
             "Action": [
             "s3:PutObject",
             "s3:PutObjectAcl"
             ],
+            "Principal": "*",            
             "Resource": "arn:aws:s3:::${var.s3_bucket_name}/*"
         }
         ]
