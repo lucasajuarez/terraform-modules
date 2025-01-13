@@ -1,19 +1,19 @@
 resource "aws_s3_bucket_policy" "policy" {
     bucket = var.s3_bucket_arn
     policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+        "Version": "2012-10-17",
+        "Statement": [
         {
             "Sid": "PublicRead",
             "Effect": "Allow",
             "Principal": "*",
             "Action": [
-                "s3:PutObject",
-                "s3:PutObjectAcl"
+            "s3:PutObject",
+            "s3:PutObjectAcl"
             ],
             "Resource": "arn:aws:s3:::${var.s3_bucket_name}/*"
         }
-    ]
+        ]
     })
 }
 
