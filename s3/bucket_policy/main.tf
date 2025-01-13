@@ -4,13 +4,12 @@ resource "aws_s3_bucket_policy" "policy" {
         "Version": "2012-10-17",
         "Statement": [
         {
-            "Sid": "PublicRead",
+            "Sid": "EcsUsage",
             "Effect": "Allow",
             "Action": [
-            "s3:PutObject",
-            "s3:PutObjectAcl"
+            "s3:*"
             ],
-            "Principal": "*",            
+            "Principal": "${var.principal}",            
             "Resource": "${var.s3_bucket_arn}/*"
         }
         ]
