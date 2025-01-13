@@ -11,12 +11,7 @@ resource "aws_s3_bucket_policy" "policy" {
                 "s3:PutObject",
                 "s3:PutObjectAcl"
             ],
-            "Resource": "arn:aws:s3:::${var.s3_bucket_name}/*",
-            "Condition": {
-                "StringEquals": {
-                    "s3:x-amz-acl": "public-read"
-                }
-            }
+            "Resource": "arn:aws:s3:::${var.s3_bucket_name}/*"
         }
     ]
     })
