@@ -55,3 +55,11 @@ variable "secrets" {
   type = map(string)
   default = {}
 }
+
+variable "nginxProxy" {
+  type = bool
+}
+
+variable nginxImage {
+    type = string
+}

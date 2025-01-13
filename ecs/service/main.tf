@@ -14,7 +14,8 @@ module "ecs-service" {
   task_exec_iam_role_arn = var.task_role
   tasks_iam_role_arn = var.task_role
 
-  container_definitions = {
+  container_definitions = merge (
+    {
       (var.container_name) = {
         cpu       = 512
         memory    = 1024
@@ -33,8 +34,27 @@ module "ecs-service" {
           valueFrom = arn
         }]
       }
-    }
-
+    },
+    var.nginxProxy == false
+      ? {} 
+      : {
+          nginx = {
+            cpu       = 512
+            memory    = 1024
+            essential = true
+            image     = tostring(var.nginxImage)
+            port_mappings = [
+              {
+                name          = "nginxport"
+                containerPort = 80
+                protocol      = "tcp"
+              }
+            ]
+            readonly_root_filesystem = false
+            memory_reservation       = 100
+          }
+        }    
+  )
   subnet_ids = var.subnet_ids
 
   security_group_rules = {
