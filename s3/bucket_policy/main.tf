@@ -11,7 +11,7 @@ resource "aws_s3_bucket_policy" "policy" {
             "s3:PutObjectAcl"
             ],
             "Principal": "*",            
-            "Resource": "arn:aws:s3:::${var.s3_bucket_name}/*"
+            "Resource": "${var.s3_bucket_name}/*"
         }
         ]
     })
