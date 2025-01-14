@@ -83,6 +83,14 @@ module "alb" {
       port        = 80
       target_type = "ip"
       target_id   = var.target_id
+      health_check = tg_name == "oauth2" ? {
+        path                = "/ping"
+        interval            = 30
+        timeout             = 5
+        healthy_threshold   = 2
+        unhealthy_threshold = 2
+        matcher             = "200"        
+      } : null
     }
   }
 }
