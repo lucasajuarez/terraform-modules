@@ -6,6 +6,10 @@ module "ecs_execution_role" {
 
   role_requires_mfa  = false
 
+  create_custom_role_trust_policy = true
+
+  custom_role_trust_policy = var.trust_policy
+
   trusted_role_services = [
     "ecs-tasks.amazonaws.com"
   ]

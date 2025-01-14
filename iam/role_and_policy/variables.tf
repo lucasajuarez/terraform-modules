@@ -9,3 +9,7 @@ variable "policy_name" {
 variable "policy" {
   type = string
 }
+
+variable "trust_policy" {
+  type = string
+}
