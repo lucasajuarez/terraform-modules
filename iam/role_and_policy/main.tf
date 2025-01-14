@@ -4,6 +4,7 @@ module "ecs_execution_role" {
   role_name = var.role_name
   create_role = true
 
+  role_requires_mfa  = false
 
   trusted_role_services = [
     "ecs-tasks.amazonaws.com"
