@@ -6,7 +6,7 @@ module "elasticache" {
   create_replication_group = false
 
   engine_version = "7.1"
-  node_type      = "cache.t4g.small"
+  node_type      = var.node_type
 
   maintenance_window = "sun:05:00-sun:09:00"
   apply_immediately  = true

@@ -17,3 +17,9 @@ variable "project_name" {
 variable "cluster_name" {
   type = string
 }
+
+variable "node_type" {
+  type = string
+  default = "cache.t4g.small"
+}
+
