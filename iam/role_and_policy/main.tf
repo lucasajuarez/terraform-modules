@@ -10,9 +10,9 @@ module "ecs_execution_role" {
 
   custom_role_trust_policy = var.trust_policy
 
-  trusted_role_services = [
-    "ecs-tasks.amazonaws.com"
-  ]
+  # trusted_role_services = [
+  #   "ecs-tasks.amazonaws.com"
+  # ]
 
   custom_role_policy_arns = [
     module.iam_policy.arn
