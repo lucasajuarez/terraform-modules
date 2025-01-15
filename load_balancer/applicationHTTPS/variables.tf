@@ -18,9 +18,9 @@ variable "target_groups" {
   description = "List of target group names to create"
 }
 
-# variable "certificate_arn" {
-#   type = string
-# }
+variable "certificate_arn" {
+  type = string
+}
 
 variable "target_id" {
   type = string
