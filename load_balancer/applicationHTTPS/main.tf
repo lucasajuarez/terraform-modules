@@ -48,8 +48,8 @@ module "alb" {
     #   }
     # }
     http = {
-      port            = 80 #TODO CAMBIAR A HTTPS CUANDO PUEDA TENER CERTIFICADO
-      protocol        = "HTTP"
+      port            = 443 #TODO CAMBIAR A HTTPS CUANDO PUEDA TENER CERTIFICADO
+      protocol        = "HTTPS"
       #certificate_arn = var.certificate_arn
       fixed_response = {
         status_code  = "503"
