@@ -83,7 +83,7 @@ module "alb" {
       port        = 80
       target_type = "ip"
       target_id   = var.target_id
-      health_check = tg_name == "stage-oauth2" ? {
+      health_check = tg_name == "stage-oauth2" || tg_name == "stage-admin" || tg_name == "stage-api" ? {
         path                = "/ping"
         interval            = 30
         timeout             = 5
