@@ -51,6 +51,10 @@ module "ecs-service" {
               }
             ]
             readonly_root_filesystem = false
+            dependencies = [{
+              containerName = "${var.container_name}"
+              condition     = "START"
+            }]            
             memory_reservation       = 100
           }
         }    
