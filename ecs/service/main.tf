@@ -25,7 +25,7 @@ module "ecs-service" {
           {
             name          = "apiport"
             containerPort = var.apiPort
-            protocol      = "tcp"
+            protocol      = "http"
           }
         ]
         memory_reservation = 50
@@ -47,7 +47,7 @@ module "ecs-service" {
               {
                 name          = "nginxport"
                 containerPort = 80
-                protocol      = "tcp"
+                protocol      = "http"
               }
             ]
             readonly_root_filesystem = false
@@ -85,7 +85,7 @@ module "ecs-service" {
         dns_name = "${var.name}-${var.apiPort}.${var.namespace}"
       }
       port_name      = "apiport"
-      discovery_name = "${var.name}-${var.apiPort}-tcp"
+      discovery_name = "${var.name}-${var.apiPort}-http"
     }
   }
 
