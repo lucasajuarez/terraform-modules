@@ -17,8 +17,8 @@ module "ecs-service" {
   container_definitions = merge (
     {
       (var.container_name) = {
-        cpu       = 512
-        memory    = 1024
+        cpu       = var.cpu
+        memory    = var.memory
         essential = true
         image     = tostring(var.apiImage)
         port_mappings = [
