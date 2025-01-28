@@ -18,7 +18,7 @@ resource "aws_s3_bucket_policy" "policy" {
             "Sid": "SparkleUserPermissions",
             "Effect": "Allow",
             "Principal": {
-                "AWS": "${var.sparkle_role_principal}"
+                "AWS": "${var.sparkle_s3_role_name}"
             },
             "Action": "s3:*",
             "Resource": "${var.s3_bucket_arn}/*"

@@ -13,7 +13,7 @@ variable "principal" {
     type        = string
     } 
 
-variable "sparkle_role_principal" {
+variable "sparkle_s3_role_name" {
     description = "Sparkle Role AWS Principal"
     type        = string
     }            
