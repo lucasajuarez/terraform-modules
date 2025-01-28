@@ -83,13 +83,14 @@ module "alb" {
       port        = 80
       target_type = "ip"
       target_id   = var.target_id
-      health_check = tg_name == "stage-oauth2" || tg_name == "stage-admin" || tg_name == "stage-api" ? {
+      health_check = tg_name == "stage-oauth2" || tg_name == "stage-admin" || tg_name == "stage-slackbot" || tg_name == "stage-api" ? {
         path                = "/ping"
-        interval            = 30
+        interval            = 5
         timeout             = 5
+        deregistration_delay = 5
         healthy_threshold   = 2
         unhealthy_threshold = 2
-        matcher             = "200"        
+        matcher             = "200"     
       } : null
     }
   }
