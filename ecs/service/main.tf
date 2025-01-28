@@ -29,6 +29,7 @@ module "ecs-service" {
           }
         ]
         memory_reservation = 50
+        readonlyRootFilesystem = false
         secrets = [for name, arn in var.secrets : {
           name      = name
           valueFrom = arn
