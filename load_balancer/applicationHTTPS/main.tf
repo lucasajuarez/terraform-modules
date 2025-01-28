@@ -1,6 +1,6 @@
 module "alb" {
     source = "terraform-aws-modules/alb/aws"
-
+    
     name    = var.alb_name
     vpc_id  = var.vpc_id
     subnets = var.lb_subnets
@@ -31,6 +31,8 @@ module "alb" {
             cidr_ipv4   = "10.0.0.0/16"
         }
     }
+
+    
 
 ################### commented in case of need to add redirect ##################
 ################### commented in case of need to add redirect ##################
@@ -82,12 +84,12 @@ module "alb" {
       protocol    = "HTTP"
       port        = 80
       target_type = "ip"
+      deregistration_delay = 10
       target_id   = var.target_id
       health_check = tg_name == "stage-oauth2" || tg_name == "stage-admin" || tg_name == "stage-slackbot" || tg_name == "stage-api" ? {
         path                = "/ping"
         interval            = 5
         timeout             = 2
-        deregistration_delay = 5
         healthy_threshold   = 2
         unhealthy_threshold = 2
         matcher             = "200"     
