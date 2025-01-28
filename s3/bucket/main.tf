@@ -3,7 +3,7 @@ module "s3_bucket" {
 
   bucket = var.bucket_name
   #acl    = "private"
-  block_public_acls = true
+  block_public_acls = false
 
   control_object_ownership = true
   object_ownership         = "ObjectWriter"
