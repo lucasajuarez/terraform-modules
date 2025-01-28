@@ -4,12 +4,14 @@ module "ecs-service" {
   name        = var.name
   cluster_arn = var.cluster_arn
   
-  cpu    = 2048
-  memory = 4096
+  cpu    = var.cpu
+  memory = var.memory
 
   create_task_exec_iam_role = var.create_task_exec_iam_role
   create_task_exec_policy = var.create_task_exec_policy
   create_tasks_iam_role = var.create_tasks_iam_role
+  deployment_minimum_healthy_percent = 100
+  deployment_maximum_percent = 200
 
   task_exec_iam_role_arn = var.task_role
   tasks_iam_role_arn = var.task_role
@@ -17,7 +19,7 @@ module "ecs-service" {
   container_definitions = merge (
     {
       (var.container_name) = {
-        cpu       = var.cpu
+        cpu       = 256
         memory    = var.memory
         essential = true
         image     = tostring(var.apiImage)
@@ -28,8 +30,8 @@ module "ecs-service" {
             protocol      = "tcp"
           }
         ]
-        memory_reservation = 50
-        readonlyRootFilesystem = false
+        memory_reservation = 256
+        readonly_root_filesystem = false
         secrets = [for name, arn in var.secrets : {
           name      = name
           valueFrom = arn
@@ -40,7 +42,7 @@ module "ecs-service" {
       ? {} 
       : {
           nginx = {
-            cpu       = 512
+            cpu       = 256
             memory    = 1024
             essential = true
             image     = tostring(var.nginxImage)
