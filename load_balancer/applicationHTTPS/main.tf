@@ -86,7 +86,7 @@ module "alb" {
       health_check = tg_name == "stage-oauth2" || tg_name == "stage-admin" || tg_name == "stage-slackbot" || tg_name == "stage-api" ? {
         path                = "/ping"
         interval            = 5
-        timeout             = 5
+        timeout             = 2
         deregistration_delay = 5
         healthy_threshold   = 2
         unhealthy_threshold = 2
