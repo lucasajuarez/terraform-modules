@@ -11,4 +11,9 @@ variable "s3_bucket_arn" {
 variable "principal" {
     description = "AWS Principal"
     type        = string
-    }        
+    } 
+
+variable "sparkle_role_principal" {
+    description = "Sparkle Role AWS Principal"
+    type        = string
+    }            

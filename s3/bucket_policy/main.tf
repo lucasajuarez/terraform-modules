@@ -13,7 +13,16 @@ resource "aws_s3_bucket_policy" "policy" {
                 "AWS": "${var.principal}"
             },                       
             "Resource": "${var.s3_bucket_arn}/*"
-        }
+        },
+        {
+            "Sid": "SparkleUserPermissions",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "${var.sparkle_role_principal}"
+            },
+            "Action": "s3:*",
+            "Resource": "${var.s3_bucket_arn}/*"
+        }        
         ]
     })
 }
