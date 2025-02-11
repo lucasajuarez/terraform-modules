@@ -73,3 +73,8 @@ variable "memory" {
   type = string
   default = 1024
 }
+
+variable "needs_alb" {
+  type = bool
+  default = true
+}

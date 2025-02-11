@@ -92,11 +92,17 @@ module "ecs-service" {
     }
   }
 
-  load_balancer = {
-    service = {
-      target_group_arn = var.target_group_arn
-      container_name   = var.nginxProxy ? "nginx" : var.container_name
-      container_port   = var.nginxProxy ? 80 : var.apiPort
-    }
-  }  
+  load_balancer = var.needs_alb ? [{
+    target_group_arn = var.target_group_arn
+    container_name   = var.nginxProxy ? "nginx" : var.container_name
+    container_port   = var.nginxProxy ? 80 : var.apiPort
+  }] : []
+
+  # load_balancer = {
+  #   service = {
+  #     target_group_arn = var.target_group_arn
+  #     container_name   = var.nginxProxy ? "nginx" : var.container_name
+  #     container_port   = var.nginxProxy ? 80 : var.apiPort
+  #   }
+  # }  
 }
