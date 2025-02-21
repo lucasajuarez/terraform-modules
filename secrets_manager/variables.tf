@@ -1,4 +1,4 @@
-variable "name_prefix" {
+variable "name" {
   description = "Prefix for the secret name"
   type        = string
 }

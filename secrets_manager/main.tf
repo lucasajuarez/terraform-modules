@@ -2,7 +2,7 @@ module "secrets_manager" {
   source = "terraform-aws-modules/secrets-manager/aws"
 
   # Secret metadata
-  name_prefix             = var.name_prefix
+  name             = var.name
   description             = var.description
   recovery_window_in_days = var.recovery_window_in_days
 
