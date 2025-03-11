@@ -42,8 +42,8 @@ module "ecs-service" {
       ? {} 
       : {
           nginx = {
-            cpu       = 256
-            memory    = 1024
+            cpu       = 100
+            memory    = 100
             essential = true
             image     = tostring(var.nginxImage)
             port_mappings = [
@@ -58,7 +58,7 @@ module "ecs-service" {
               containerName = "${var.container_name}"
               condition     = "START"
             }]            
-            memory_reservation       = 100
+            memory_reservation       = 50
           }
         }    
   )
