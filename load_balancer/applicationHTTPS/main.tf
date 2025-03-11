@@ -6,7 +6,7 @@ module "alb" {
     subnets = var.lb_subnets
     internal = var.is_Internal
     load_balancer_type = var.load_balancer_type
-    xff_header_processing_mode = remove
+    xff_header_processing_mode = "remove"
 
     # Security Group
     security_group_ingress_rules = {
