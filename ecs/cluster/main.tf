@@ -8,6 +8,7 @@ module "ecs_cluster" {
       logging = "OVERRIDE"
       log_configuration = {
         cloud_watch_log_group_name = "/aws/ecs/aws-ec2"
+        retention_in_days = 7
       }
     }
   }
