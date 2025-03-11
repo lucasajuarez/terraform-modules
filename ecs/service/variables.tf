@@ -64,12 +64,22 @@ variable nginxImage {
     type = string
 }
 
-variable "cpu" {
+variable "servicecpu" {
   type = string
   default = 512
 }
 
-variable "memory" {
+variable "servicememory" {
+  type = string
+  default = 1024
+}
+
+variable "containercpu" {
+  type = string
+  default = 512
+}
+
+variable "containermemory" {
   type = string
   default = 1024
 }

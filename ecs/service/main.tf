@@ -4,8 +4,8 @@ module "ecs-service" {
   name        = var.name
   cluster_arn = var.cluster_arn
   
-  cpu    = var.cpu
-  memory = var.memory
+  cpu    = var.servicecpu
+  memory = var.servicememory
 
   create_task_exec_iam_role = var.create_task_exec_iam_role
   create_task_exec_policy = var.create_task_exec_policy
@@ -19,8 +19,8 @@ module "ecs-service" {
   container_definitions = merge (
     {
       (var.container_name) = {
-        cpu       = 256
-        memory    = var.memory
+        cpu       = var.containercpu
+        memory    = var.containermemory
         essential = true
         image     = tostring(var.apiImage)
         port_mappings = [
