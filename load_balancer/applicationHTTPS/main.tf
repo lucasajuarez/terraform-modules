@@ -86,7 +86,7 @@ module "alb" {
       port        = 80
       target_type = "ip"
       deregistration_delay = 10
-      #target_id   = var.target_id
+      target_id   = var.target_id
       health_check = {
         path                = "/ping"
         interval            = 5
