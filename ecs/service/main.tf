@@ -31,7 +31,7 @@ module "ecs-service" {
             protocol      = "tcp"
           }
         ]
-        memory_reservation = 256
+        memory_reservation = var.containermemoryreservation
         readonly_root_filesystem = false
         secrets = [for name, arn in var.secrets : {
           name      = name

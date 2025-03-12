@@ -92,3 +92,7 @@ variable "needs_alb" {
   type = bool
   default = true
 }
+
+variable "containermemoryreservation" {
+  type = string
+}
