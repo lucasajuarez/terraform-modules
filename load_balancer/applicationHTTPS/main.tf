@@ -87,14 +87,22 @@ module "alb" {
       target_type = "ip"
       deregistration_delay = 10
       target_id   = var.target_id
-      health_check = tg_name == "oauth2" || tg_name == "admin" || tg_name == "slackbot-sparkle" || tg_name == "api-sparkle" ? {
+      health_check = {
         path                = "/ping"
         interval            = 5
         timeout             = 2
         healthy_threshold   = 2
         unhealthy_threshold = 2
         matcher             = "200"     
-      } : null
+      }      
+      # health_check = tg_name == "oauth2" || tg_name == "admin" || tg_name == "slackbot-sparkle" || tg_name == "api-sparkle" ? {
+      #   path                = "/ping"
+      #   interval            = 5
+      #   timeout             = 2
+      #   healthy_threshold   = 2
+      #   unhealthy_threshold = 2
+      #   matcher             = "200"     
+      # } : null
     }
   }
 }
