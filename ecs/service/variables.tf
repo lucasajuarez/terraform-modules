@@ -14,6 +14,10 @@ variable "apiPort" {
     type = number
 }
 
+variable "cloudwatch_retention_days" {
+    type = number
+}
+
 variable "container_name" {
     type = string
 }

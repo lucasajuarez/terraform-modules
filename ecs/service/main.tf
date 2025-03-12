@@ -22,6 +22,7 @@ module "ecs-service" {
         cpu       = var.containercpu
         memory    = var.containermemory
         essential = true
+        cloudwatch_log_group_retention_in_days = var.cloudwatch_retention_days
         image     = tostring(var.apiImage)
         port_mappings = [
           {
@@ -45,6 +46,7 @@ module "ecs-service" {
             cpu       = 100
             memory    = 100
             essential = true
+            cloudwatch_log_group_retention_in_days = var.cloudwatch_retention_days
             image     = tostring(var.nginxImage)
             port_mappings = [
               {
