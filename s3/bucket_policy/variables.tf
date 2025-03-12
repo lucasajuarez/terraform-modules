@@ -8,12 +8,17 @@ variable "s3_bucket_arn" {
     type        = string
     }
 
-variable "principal" {
-    description = "AWS Principal"
+variable "ecs_role_arn" {
+    description = "AWS ECS Role Principal"
     type        = string
-    } 
+    }
 
-variable "sparkle_s3_role_name" {
+variable "account_name" {
+    description = "Numero de cuenta de AWS"
+    type        = string
+    }        
+
+variable "sparkle_s3_user_arn" {
     description = "Sparkle Role AWS Principal"
     type        = string
-    }            
+    }     

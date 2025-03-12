@@ -4,19 +4,24 @@ resource "aws_s3_bucket_policy" "policy" {
         "Version": "2012-10-17",
         "Statement": [
             {
-                "Sid": "PublicRead",
+                "Sid": "EcsUsage",
                 "Effect": "Allow",
-                "Principal": "*",
-                "Action": [
-                    "s3:PutObject",
-                    "s3:PutObjectAcl"
-                ],
-                "Resource": "${var.s3_bucket_arn}/*",
-                "Condition": {
-                    "StringEquals": {
-                        "s3:x-amz-acl": "public-read"
-                    }
-                }
+                "Principal": {
+                    "AWS": "${var.ecs_role_arn}"
+                    #"AWS": "arn:aws:iam::${var.account_name}:role/${var.ecs_role_name}" #stage-litebox-EcsTaskExecRole
+                },
+                "Action": "s3:*",
+                "Resource": "${var.s3_bucket_arn}/*"
+            },
+            {
+                "Sid": "SparkleUserPermissions",
+                "Effect": "Allow",
+                "Principal": {
+                    "AWS": "${var.sparkle_s3_user_arn}"  
+                    #"AWS": "arn:aws:iam::${var.account_name}:user/${var.sparkle_s3_user_name}"   #s3-sparkle-staging
+                },
+                "Action": "s3:*",
+                "Resource": "${var.s3_bucket_arn}/*"
             }
         ]
     })    
