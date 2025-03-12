@@ -85,8 +85,9 @@ module "alb" {
       protocol    = "HTTP"
       port        = 80
       target_type = "ip"
-      deregistration_delay = 10
-      target_id   = var.target_id
+      deregistration_delay = 5
+      create_attachment    = false
+      #target_id   = var.target_id
       health_check = {
         path                = "/ping"
         interval            = 5
@@ -95,14 +96,6 @@ module "alb" {
         unhealthy_threshold = 2
         matcher             = "200"     
       }      
-      # health_check = tg_name == "oauth2" || tg_name == "admin" || tg_name == "slackbot-sparkle" || tg_name == "api-sparkle" ? {
-      #   path                = "/ping"
-      #   interval            = 5
-      #   timeout             = 2
-      #   healthy_threshold   = 2
-      #   unhealthy_threshold = 2
-      #   matcher             = "200"     
-      # } : null
     }
   }
 }
