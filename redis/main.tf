@@ -1,7 +1,7 @@
 module "elasticache" {
   source = "terraform-aws-modules/elasticache/aws"
 
-  cluster_id               = "${var.environment}-${var.project_name}"
+  cluster_id               = "${var.cluster_name}"
   create_cluster           = true
   create_replication_group = false
 
