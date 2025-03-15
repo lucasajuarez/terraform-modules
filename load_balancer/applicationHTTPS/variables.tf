@@ -22,10 +22,6 @@ variable "certificate_arn" {
   type = string
 }
 
-variable "target_id" {
-  type = string
-}
-
 variable "is_Internal" {
   type = string
   default = false

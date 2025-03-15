@@ -87,7 +87,6 @@ module "alb" {
       target_type = "ip"
       deregistration_delay = 5
       create_attachment    = false
-      #target_id   = var.target_id
       health_check = {
         path                = "/ping"
         interval            = 5
