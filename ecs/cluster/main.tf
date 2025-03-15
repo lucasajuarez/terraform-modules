@@ -3,6 +3,8 @@ module "ecs_cluster" {
 
   cluster_name = var.cluster_name
 
+  cloudwatch_log_group_retention_in_days = var.cloudwatch_retention_days
+
   cluster_configuration = {
     execute_command_configuration = {
       logging = "OVERRIDE"

@@ -5,3 +5,7 @@ variable "cluster_name" {
 variable "service_discovery_namespace" {
   type = string
 }
+
+variable "cloudwatch_retention_days" {
+    type = number
+}
